@@ -16,8 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = ShapeViewController()
-        //self.window?.rootViewController = SingleShapeViewController()
+        self.window?.rootViewController = makeRootViewController()
         self.window?.makeKeyAndVisible()
 
         return true
@@ -25,3 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+func makeRootViewController() -> UIViewController {
+    let split = UISplitViewController()
+    split.viewControllers = [UIViewController(), ShapeViewController()]
+    split.minimumPrimaryColumnWidth = UIScreen.main.bounds.width / 2
+    split.maximumPrimaryColumnWidth = UIScreen.main.bounds.width / 2
+    return split
+}
