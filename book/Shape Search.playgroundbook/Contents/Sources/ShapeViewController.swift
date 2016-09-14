@@ -28,10 +28,7 @@ public class ShapeViewController: UIViewController {
                 let index = i*4 + j
                 let imageView = UIImageView(image: self.shuffledShapes[index].image())
                 imageView.translatesAutoresizingMaskIntoConstraints = false
-                // DEBUG
-                //if index == chosenShape {
-                //    imageView.backgroundColor = .blue
-                //}
+                imageView.contentMode = .scaleAspectFill
                 imageViews.append(imageView)
                 views.append(imageView)
             }
@@ -74,8 +71,7 @@ public class ShapeViewController: UIViewController {
         self.imageViews.forEach { imgView in
             imgView.alpha = 1.0
         }
-        chosenShape = GKRandomSource.sharedRandom().nextInt(withUpperBound: shuffledShapes.count)
-
+        chosenShape = GKRandomSource.sharedRandom().nextInt(upperBound: shuffledShapes.count)
     }
 
     func checkIfDone() {
